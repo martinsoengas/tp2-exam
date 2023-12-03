@@ -2,7 +2,7 @@ import User from '../models/users.model.js';
 
 async function seeder() {
   try {
-    for (let id = 0; id < 6; id++) {
+    for (let id = 1; id < 6; id++) {
       await User.create({
         name: `user${id}`,
         email: `user${id}@email.com`,
