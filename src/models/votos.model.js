@@ -2,32 +2,32 @@ import { DataTypes, Model } from 'sequelize';
 
 import connection from '../config/connection.js';
 
-class User extends Model {}
+class Voto extends Model {}
 
-User.init(
+Voto.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    distrito: {
+      type: DataTypes.ENUM,
+      values: ['zona1', 'zona2', 'zona3', 'zona4'],
       allowNull: false,
-      unique: true,
       validate: { notEmpty: true },
     },
-    email: {
-      type: DataTypes.STRING,
+    candidato: {
+      type: DataTypes.ENUM,
+      values: ['candidatoA', 'candidatoB', 'candidatoC', 'enblanco'],
       allowNull: false,
-      unique: true,
-      validate: { isEmail: true },
+      validate: { notEmpty: true },
     },
   },
   {
     sequelize: connection,
-    modelName: 'User',
+    modelName: 'Voto',
   }
 );
 
-export default User;
+export default Voto;

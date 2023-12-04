@@ -1,5 +1,4 @@
 import connection from './config/connection.js';
-import seeder from './helpers/seeder.js';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -8,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '../example.env' });
 
 // Router Imports
-import usersRouter from './routes/users.routes.js';
+import votosRouter from './routes/votos.routes.js';
 
 const app = express();
 
@@ -18,17 +17,10 @@ app.use(cors({}));
 app.use(morgan('dev'));
 
 // Routes
-app.use('/users', usersRouter);
-
-app.use('/', async (_req, res) => {
-  res.status(200).send({
-    status: '🟢 System operational',
-  });
-});
+app.use('/votos', votosRouter);
 
 // DB
 await connection.sync({ force: false });
-await seeder();
 
 // Server
 const port = process.env.PORT || 3000;
